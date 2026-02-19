@@ -4,14 +4,12 @@ export const TasksPage = () => {
     data: [
       {
         id: 1,
-        title: "Learn React",
-        description: "Understand components and hooks",
+        title: "This is a sample task title",
         completed: false,
       },
       {
         id: 2,
-        title: "Build Task App",
-        description: "Create reusable task components",
+        title: "Sample Task",
         completed: true,
       },
     ],
@@ -26,7 +24,7 @@ export const TasksPage = () => {
     );
   };
 
-  // Handle edit (you can replace console.log with a modal or form)
+  // Handle edit 
   const handleEdit = (id) => {
     const task = tasks.find((t) => t.id === id);
     console.log("Edit task:", task);
