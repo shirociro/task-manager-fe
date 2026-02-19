@@ -26,31 +26,3 @@ export const deleteUserAPI = (id) =>
     fakeUsers = fakeUsers.filter((t) => t.id !== id);
     setTimeout(() => resolve(id), 500);
   });
-
-
-// modules/users/services/users.service.js
-// import { api } from "@/api/axios";
-
-// // Fetch all users
-// export const fetchUsers = async () => {
-//   const { data } = await api.get("/users"); // GET /users
-//   return data;
-// };
-
-// // Add a user
-// export const addUserAPI = async (user) => {
-//   const { data } = await api.post("/users", user); // POST /users
-//   return data;
-// };
-
-// // Update a user
-// export const updateUserAPI = async (user) => {
-//   const { data } = await api.put(`/users/${user.id}`, user); // PUT /users/:id
-//   return data;
-// };
-
-// // Delete a user
-// export const deleteUserAPI = async (id) => {
-//   await api.delete(`/users/${id}`); // DELETE /users/:id
-//   return id;
-// };
