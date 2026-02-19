@@ -1,44 +1,25 @@
-
-import { Button, Checkbox, Label, Modal, ModalBody, ModalHeader, TextInput } from "flowbite-react";
 import { useState } from "react";
+import { Card, Button, Tooltip, Checkbox  } from "flowbite-react";
 
-export function TaskAdd({ task, onClose, onSave }) {
-  const [openModal, setOpenModal] = useState(true);
-  const [email, setEmail] = useState("");
+import { HiPencil, HiTrash } from "react-icons/hi";
 
-  function onCloseModal() {
-    setOpenModal(false);
-    setEmail("");
-  }
+export const TaskAdd = ({ task, onEdit, onDelete, onCompleted }) => {
+
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   return (
-    <>
-      <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
-      <Modal show={openModal} size="md" onClose={onCloseModal} popup>
-        <ModalHeader />
-        <ModalBody>
-          <div className="space-y-6">
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="email">Your email</Label>
-              </div>
-              <TextInput
-                id="email"
-                placeholder="name@company.com"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="password">Your password</Label>
-              </div>
-              <TextInput id="password" type="password" required />
-            </div>
-          </div>
-        </ModalBody>
-      </Modal>
-    </>
+    <div className="relative w-full mx-auto">
+      <Card
+        className={`
+            h-full rounded-xl shadow-md hover:shadow-xl overflow-hidden flex flex-col
+    transition-all duration-300 ease-in-out min-h-[150px]  
+        `}
+        style={{ padding: '1.5rem' }} 
+      >
+        <p className="text-md font-semibold text-gray-800 dark:text-white">Add Task</p>
+            
+      </Card>
+    </div>
   );
-}
+};
+
