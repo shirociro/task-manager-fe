@@ -7,10 +7,11 @@ export const TaskAdd = ({ onAdd }) => {
   const [completed, setCompleted] = useState(false);
 
   const handleAdd = () => {
-    if (!title.trim()) return; 
+    if (!title.trim()) return; // prevent empty task
     if (onAdd) {
       onAdd({ title, completed });
     }
+    // Reset form
     setTitle("");
     setCompleted(false);
     setShowForm(false);
@@ -19,17 +20,17 @@ export const TaskAdd = ({ onAdd }) => {
   return (
     <div className="relative w-full mx-auto">
       <Card
-        className="h-full rounded-xl shadow-md hover:shadow-xl overflow-hidden flex flex-col
-        transition-all duration-300 ease-in-out min-h-[250px] cursor-pointer max-h-[250px]"
+        className="h-full max-h-[250px] rounded-xl shadow-md hover:shadow-xl overflow-auto flex flex-col
+          transition-all duration-300 ease-in-out min-h-[250px] cursor-pointer "
         style={{ padding: "1.5rem" }}
-        onClick={() => !showForm && setShowForm(true)} 
+        onClick={() => !showForm && setShowForm(true)} // open form on click
       >
         {!showForm ? (
           <p className="text-md font-semibold text-gray-800 dark:text-white text-center">
             + Add Task
           </p>
         ) : (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 h-full">
             <textarea
               placeholder="Task title"
               className="p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-400 dark:bg-gray-700 dark:text-white resize-none h-24"
@@ -47,7 +48,7 @@ export const TaskAdd = ({ onAdd }) => {
                 Completed
               </label>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-auto">
               <Button onClick={handleAdd} className="flex-1">
                 Add
               </Button>

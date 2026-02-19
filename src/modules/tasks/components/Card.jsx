@@ -13,11 +13,12 @@ export const TaskCard = ({ task, onEdit, onDelete, onCompleted }) => {
   className={`
     h-full max-h-[250px] rounded-xl shadow-md hover:shadow-xl overflow-auto flex flex-col
     transition-all duration-300 ease-in-out min-h-[250px]
+    ${task.completed ? "bg-green-100/70" : "bg-yellow-100/70"}
   `}
   style={{ padding: '1.5rem' }}
 >
   {/* Top-right buttons */}
-  <div className="absolute top-0 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-1">
+  <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-1">
     {/* Edit */}
     <Tooltip content="Edit blog" placement="top">
       <Button
@@ -43,12 +44,12 @@ export const TaskCard = ({ task, onEdit, onDelete, onCompleted }) => {
     {/* Completed */}
     <Tooltip content="Mark as completed" placement="top">
       <Button
-        onClick={() => onDelete(true)}
+        onClick={() => onCompleted(true)}
         size="lg"
         className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
       >
         <Checkbox
-          onChange={(e) => onDelete(e.target.checked)}
+          onChange={(e) => onCompleted(e.target.checked)}
           className="w-5 h-5 cursor-pointer"
         />
       </Button>
