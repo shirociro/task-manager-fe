@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { Card, Button, Checkbox, Tooltip } from "flowbite-react";
+import { Card, Button, TextInput, Tooltip } from "flowbite-react";
 import { HiCheck, HiX } from "react-icons/hi";
 
 export const UserAdd = ({ onAdd }) => {
   const [showForm, setShowForm] = useState(false);
-  const [name, setName] = useState("");
-  const [completed, setCompleted] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleAdd = () => {
-    if (!name.trim()) return; // prevent empty user
+    if (!username.trim()) return; // prevent empty user
     if (onAdd) {
-      onAdd({ name, completed });
+      onAdd({ username, password });
     }
     // Reset form
-    setName("");
-    setCompleted(false);
+    setUsername("");
+    setPassword("");
     setShowForm(false);
   };
 
@@ -31,14 +31,11 @@ export const UserAdd = ({ onAdd }) => {
             + Add User
           </p>
         ) : (
-          <div className="flex flex-col gap-3 h-full pt-2 mt-2">
-            <textarea
-              placeholder="User name"
-              className="p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-400 dark:bg-gray-700 dark:text-white resize-none h-24"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              autoFocus
-            />
+          <div className="flex flex-col gap-3 h-full pt-2 mt-2"> 
+            <TextInput  sizing="sm" id="name" type="text" placeholder="User name" required   value={username}  onChange={(e) => setUsername(e.target.value)}/>
+            <TextInput sizing="sm"  id="password" type="password" placeholder="User password" required   value={password}  onChange={(e) => setPassword(e.target.value)}/>
+            
+           
             <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-0">
               {/* Edit */}
               <Tooltip content="Confirm" placement="top">

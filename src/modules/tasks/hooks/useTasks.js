@@ -9,7 +9,6 @@ import {
 export const useTasks = () => {
   const queryClient = useQueryClient();
 
-  // 1. Fetch tasks with "Circuit Breaker" settings
   const {
     data: tasks = [],
     isLoading,
@@ -18,8 +17,8 @@ export const useTasks = () => {
     queryKey: ["tasks"],
     queryFn: fetchTasks,
     staleTime: 30000, // Consider data "fresh" for 30 seconds
-    refetchOnWindowFocus: false, // Stop fetching every time you switch tabs
-    retry: 1, // Only retry once if the Render API is sleepy
+    refetchOnWindowFocus: false, 
+    retry: 1, 
   });
 
   const addTaskMutation = useMutation({

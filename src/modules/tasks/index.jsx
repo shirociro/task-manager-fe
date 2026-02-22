@@ -17,7 +17,7 @@ export const TasksPage = () => {
             updateTask({ ...task, completed: !task.completed })
           }
           onEdit={(task) => updateTask(task)}
-          onDelete={(task) => deleteTask(task.id)}
+          onDelete={(id) => deleteTask(id)}
           onAdd={(newTask) => {
             addTask(newTask); 
           }}

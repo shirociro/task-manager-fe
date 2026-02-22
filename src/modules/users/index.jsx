@@ -14,11 +14,11 @@ export const UsersPage = () => {
         <Grid
           users={users}
           onCompleted={(user) =>
-            updateUser.mutate({ ...user, completed: !user.completed })
+            updateUser({ ...user, completed: !user.completed })
           }
-          onEdit={(user) => updateUser.mutate(user)}
-          onDelete={(user) => deleteUser.mutate(user.id)}
-          onAdd={(user) => addUser.mutate(user)}
+          onEdit={(user) => updateUser(user)}
+          onDelete={(user) => deleteUser(user.id)}
+          onAdd={(user) => addUser(user)}
         />
       </div>
     </section>

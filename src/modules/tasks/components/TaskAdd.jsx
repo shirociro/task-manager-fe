@@ -17,7 +17,6 @@ export const TaskAdd = ({ onAdd }) => {
     }
     // Reset form
     setTitle("");
-    setCompleted(false);
     setUserId("");
     setShowForm(false);
   };
@@ -63,11 +62,13 @@ export const TaskAdd = ({ onAdd }) => {
               </Select>
             </div>
             <div className="flex items-center gap-2">
-              <Checkbox
+                
+            <Checkbox
                 id="isCompleted"
                 checked={isCompleted}
-                onChange={(e) => setCompleted(e.target.checked)}
-              />
+                // This is the simplest "toggle" logic
+                onClick={() => setCompleted(!isCompleted)} 
+                readOnly></Checkbox>
               <label
                 htmlFor="isCompleted"
                 className="text-gray-700 dark:text-white"

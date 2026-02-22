@@ -9,7 +9,7 @@ import {
 export const useUsers = () => {
   const queryClient = useQueryClient();
 
-  // Fetch users
+  // 1. Fetch Users
   const {
     data: users = [],
     isLoading,
@@ -17,32 +17,34 @@ export const useUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
+    staleTime: 30000,
+    refetchOnWindowFocus: false,
   });
 
-  // Add users
-  const addUser = useMutation({
+  // 2. Add User Mutation
+  const addUserMutation = useMutation({
     mutationFn: addUserAPI,
     onSuccess: (newUser) => {
       queryClient.setQueryData(["users"], (old = []) => [...old, newUser]);
     },
   });
 
-  // Update users
-  const updateUser = useMutation({
+  // 3. Update User Mutation
+  const updateUserMutation = useMutation({
     mutationFn: updateUserAPI,
     onSuccess: (updatedUser) => {
       queryClient.setQueryData(["users"], (old = []) =>
-        old.map((t) => (t.id === updatedUser.id ? updatedUser : t)),
+        old.map((u) => (u.id === updatedUser.id ? updatedUser : u))
       );
     },
   });
 
-  // Delete users
-  const deleteUser = useMutation({
+  // 4. Delete User Mutation
+  const deleteUserMutation = useMutation({
     mutationFn: deleteUserAPI,
-    onSuccess: (id) => {
+    onSuccess: (deletedId) => {
       queryClient.setQueryData(["users"], (old = []) =>
-        old.filter((t) => t.id !== id),
+        old.filter((u) => u.id !== deletedId)
       );
     },
   });
@@ -51,8 +53,9 @@ export const useUsers = () => {
     users,
     isLoading,
     isError,
-    addUser,
-    updateUser,
-    deleteUser,
+    // Direct mutate functions for a simpler API in your components
+    addUser: addUserMutation.mutate,
+    updateUser: updateUserMutation.mutate,
+    deleteUser: deleteUserMutation.mutate,
   };
 };

@@ -4,14 +4,14 @@ import { UserEdit } from "@/modules/users/components/UserEdit";
 import { UserAdd } from "@/modules/users/components/UserAdd";
 import { UserDelete } from "@/modules/users/components/UserDelete";
 
-export const Grid = ({ users, onEdit, onDelete, onCompleted }) => {
+export const Grid = ({ users, onAdd, onEdit, onDelete, onCompleted }) => {
   const [editingUserId, setEditingUserId] = useState(null);
   const [deletingUserId, setDeletingUserId] = useState(null);
 
   return (
     <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
       {/* First card: UserAdd */}
-      <UserAdd />
+      <UserAdd onAdd={onAdd} />
 
       {/* User Cards */}
       {users.map((user) => (
