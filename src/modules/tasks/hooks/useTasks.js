@@ -38,6 +38,7 @@ export const useTasks = () => {
     mutationFn: addTaskAPI,
     onSuccess: (newTask) => {
       queryClient.setQueryData(["tasks"], (old = []) => [...old, newTask]);
+      showAlert("Task Added", "success");
     },
   });
 
@@ -60,7 +61,7 @@ export const useTasks = () => {
       if (context?.previousTasks) {
         queryClient.setQueryData(["tasks"], context.previousTasks);
       }
-      showAlert("Could not sync with server", "destructive");
+      showAlert("Error saving the task", "destructive");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
