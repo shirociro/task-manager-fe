@@ -48,10 +48,12 @@ export const TaskCard = ({ task, onEdit, onDelete, onCompleted }) => {
             >
               <Checkbox
                 checked={task.isCompleted}
-                onClick={() => onCompleted({...task, isCompleted: !task.isCompleted})} 
+                onClick={() =>
+                  onCompleted({ ...task, isCompleted: !task.isCompleted })
+                }
                 className="w-5 h-5 cursor-pointer"
-
-                readOnly></Checkbox>
+                readOnly
+              ></Checkbox>
             </Button>
           </Tooltip>
         </div>

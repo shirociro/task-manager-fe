@@ -34,7 +34,7 @@ export const useUsers = () => {
     mutationFn: updateUserAPI,
     onSuccess: (updatedUser) => {
       queryClient.setQueryData(["users"], (old = []) =>
-        old.map((u) => (u.id === updatedUser.id ? updatedUser : u))
+        old.map((u) => (u.id === updatedUser.id ? updatedUser : u)),
       );
     },
   });
@@ -44,7 +44,7 @@ export const useUsers = () => {
     mutationFn: deleteUserAPI,
     onSuccess: (deletedId) => {
       queryClient.setQueryData(["users"], (old = []) =>
-        old.filter((u) => u.id !== deletedId)
+        old.filter((u) => u.id !== deletedId),
       );
     },
   });

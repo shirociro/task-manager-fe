@@ -43,32 +43,30 @@ export const TaskAdd = ({ onAdd }) => {
               autoFocus
             />
             <div>
-            <div className="mb-1 block">
-              </div>
-              <Select 
-                id="users" 
+              <div className="mb-1 block"></div>
+              <Select
+                id="users"
                 sizing="sm"
-                required 
-                value={userId} 
+                required
+                value={userId}
                 onChange={(e) => setUserId(e.target.value)}
-                >
-                
-              <option value="">Select a user</option>
+              >
+                <option value="">Select a user</option>
                 {users.map((user) => (
-                    <option key={user.id} value={user.id}>
+                  <option key={user.id} value={user.id}>
                     {user.username}
-                    </option>
+                  </option>
                 ))}
               </Select>
             </div>
             <div className="flex items-center gap-2">
-                
-            <Checkbox
+              <Checkbox
                 id="isCompleted"
                 checked={isCompleted}
                 // This is the simplest "toggle" logic
-                onClick={() => setCompleted(!isCompleted)} 
-                readOnly></Checkbox>
+                onClick={() => setCompleted(!isCompleted)}
+                readOnly
+              ></Checkbox>
               <label
                 htmlFor="isCompleted"
                 className="text-gray-700 dark:text-white"

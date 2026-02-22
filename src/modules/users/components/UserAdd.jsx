@@ -22,7 +22,7 @@ export const UserAdd = ({ onAdd }) => {
     setUsername("");
     setPassword("");
     setShowForm(false);
-  }
+  };
   return (
     <div className="relative w-full mx-auto">
       <Card
@@ -36,11 +36,26 @@ export const UserAdd = ({ onAdd }) => {
             + Add User
           </p>
         ) : (
-          <div className="flex flex-col gap-3 h-full pt-2 mt-2"> 
-            <TextInput  sizing="sm" id="name" type="text" placeholder="User name" required   value={username}  onChange={(e) => setUsername(e.target.value)}/>
-            <TextInput sizing="sm"  id="password" type="password" placeholder="User password" required   value={password}  onChange={(e) => setPassword(e.target.value)}/>
-            
-           
+          <div className="flex flex-col gap-3 h-full pt-2 mt-2">
+            <TextInput
+              sizing="sm"
+              id="name"
+              type="text"
+              placeholder="User name"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextInput
+              sizing="sm"
+              id="password"
+              type="password"
+              placeholder="User password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
             <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-0">
               {/* Edit */}
               <Tooltip content="Confirm" placement="top">

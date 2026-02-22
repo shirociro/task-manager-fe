@@ -16,7 +16,6 @@ export const updateTaskAPI = async (task) => {
 };
 
 export const deleteTaskAPI = async (id) => {
-    alert(id);
   await api.delete(`/api/tasks/${id}`);
   return id;
 };

@@ -19,7 +19,6 @@ export const UsersPage = () => {
           onEdit={(user) => updateUser(user)}
           onDelete={(id) => deleteUser(id)}
           onAdd={(newUser) => addUser(newUser)}
-          
         />
       </div>
     </section>
