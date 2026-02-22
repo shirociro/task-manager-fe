@@ -4,7 +4,7 @@ import { HiCheck, HiX } from "react-icons/hi";
 
 export const TaskEdit = ({ task, onSave, onCancel }) => {
   const [title, setTitle] = useState(task.title);
-  const [completed, setCompleted] = useState(task.completed || false);
+  const [completed, setCompleted] = useState(task.isCompleted || false);
 
   const handleSave = () => {
     if (!title.trim()) return;

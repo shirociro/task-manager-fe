@@ -12,7 +12,7 @@ export const TaskCard = ({ task, onEdit, onDelete, onCompleted }) => {
         className={`
     h-full max-h-[250px] rounded-xl shadow-md hover:shadow-xl overflow-auto flex flex-col
     transition-all duration-300 ease-in-out min-h-[250px]
-    ${task.completed ? "bg-green-100/70" : "bg-yellow-100/70"}
+    ${task.isCompleted ? "bg-green-100/70" : "bg-yellow-100/70"}
   `}
         style={{ padding: "1.5rem" }}
       >
