@@ -17,8 +17,9 @@ export const UsersPage = () => {
             updateUser({ ...user, completed: !user.completed })
           }
           onEdit={(user) => updateUser(user)}
-          onDelete={(user) => deleteUser(user.id)}
-          onAdd={(user) => addUser(user)}
+          onDelete={(id) => deleteUser(id)}
+          onAdd={(newUser) => addUser(newUser)}
+          
         />
       </div>
     </section>

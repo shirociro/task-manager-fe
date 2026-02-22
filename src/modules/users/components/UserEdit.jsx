@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Card, Button, Tooltip } from "flowbite-react";
+import { Card, Button, Tooltip, TextInput } from "flowbite-react";
 import { HiCheck, HiX } from "react-icons/hi";
 
 export const UserEdit = ({ user, onSave, onCancel }) => {
-  const [name, setName] = useState(user.username);
+  const [username, setUsername] = useState(user.username);
+  const [password, setPassword] = useState(user.password || "");
+
 
   const handleSave = () => {
-    if (!name.trim()) return;
-    onSave({ ...user, username: name });
+    if (!username.trim()) return;
+    onSave({ ...user, username: username, password: password });
   };
 
   return (
@@ -18,13 +20,9 @@ export const UserEdit = ({ user, onSave, onCancel }) => {
         style={{ padding: "1.5rem" }}
       >
         <div className="flex flex-col gap-3 mt-2 pt-2">
-          <textarea
-            placeholder="User name"
-            className="p-2 rounded border border-gray-300 focus:outline-none focus:ring focus:ring-blue-400 dark:bg-gray-700 dark:text-white resize-none h-24"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            autoFocus
-          />
+            <TextInput  sizing="sm" id="name" type="text" placeholder="User name" required   value={username}  onChange={(e) => setUsername(e.target.value)}/>
+            <TextInput sizing="sm"  id="password" type="password" placeholder="User password" required   value={password}  onChange={(e) => setPassword(e.target.value)}/>
+                     
           <div className="flex gap-2">
             {/* Confirm & Cancel buttons */}
             <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-0">

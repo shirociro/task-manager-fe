@@ -9,7 +9,7 @@ export const UserDelete = ({ user, onConfirm, onCancel }) => {
         style={{ padding: "1.5rem" }}
       >
         <p className="text-lg font-semibold text-gray-800 dark:text-white mb-0 pt-4 mt-4">
-          Are you sure you want to delete this user? "{user.name}"
+          Are you sure you want to delete this user? "{user.username}"
         </p>
         <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-0">
           {/* Edit */}
