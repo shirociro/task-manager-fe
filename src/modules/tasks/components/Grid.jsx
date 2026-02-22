@@ -39,7 +39,7 @@ export const Grid = ({ tasks, onAdd, onEdit, onDelete, onCompleted }) => {
               task={task}
               onEdit={() => setEditingTaskId(task.id)}
               onDelete={() => setDeletingTaskId(task.id)} // trigger delete mode
-              onCompleted={() => onCompleted(task.id)}
+              onCompleted={(updatedTask) => onCompleted(updatedTask)}
             />
           )}
         </div>

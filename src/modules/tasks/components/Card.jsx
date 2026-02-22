@@ -43,14 +43,15 @@ export const TaskCard = ({ task, onEdit, onDelete, onCompleted }) => {
           {/* Completed */}
           <Tooltip content="Mark as completed" placement="top">
             <Button
-              onClick={() => onCompleted(true)}
               size="lg"
               className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
             >
               <Checkbox
-                onChange={(e) => onCompleted(e.target.checked)}
+                checked={task.isCompleted}
+                onClick={() => onCompleted({...task, isCompleted: !task.isCompleted})} 
                 className="w-5 h-5 cursor-pointer"
-              />
+
+                readOnly></Checkbox>
             </Button>
           </Tooltip>
         </div>

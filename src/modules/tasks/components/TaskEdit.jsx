@@ -4,11 +4,11 @@ import { HiCheck, HiX } from "react-icons/hi";
 
 export const TaskEdit = ({ task, onSave, onCancel }) => {
   const [title, setTitle] = useState(task.title);
-  const [completed, setCompleted] = useState(task.isCompleted || false);
+  const [isCompleted, setCompleted] = useState(task.isCompleted || false);
 
   const handleSave = () => {
     if (!title.trim()) return;
-    onSave({ ...task, title, completed });
+    onSave({ ...task, title, isCompleted });
   };
 
   return (
@@ -29,7 +29,7 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
           <div className="flex items-center gap-2">
             <Checkbox
               id={`completed-${task.id}`}
-              checked={completed}
+              checked={isCompleted}
               onChange={(e) => setCompleted(e.target.checked)}
             />
             <label

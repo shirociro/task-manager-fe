@@ -18,6 +18,11 @@ export const UserAdd = ({ onAdd }) => {
     setShowForm(false);
   };
 
+  const handleCancel = () => {
+    setUsername("");
+    setPassword("");
+    setShowForm(false);
+  }
   return (
     <div className="relative w-full mx-auto">
       <Card
@@ -51,7 +56,7 @@ export const UserAdd = ({ onAdd }) => {
               {/* Delete */}
               <Tooltip content="Cancel" placement="top">
                 <Button
-                  onClick={() => setShowForm(false)}
+                  onClick={() => handleCancel()}
                   size="lg"
                   className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
                 >

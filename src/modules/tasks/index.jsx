@@ -14,7 +14,7 @@ export const TasksPage = () => {
         <Grid
           tasks={tasks}
           onCompleted={(task) =>
-            updateTask({ ...task, completed: !task.completed })
+            updateTask(task)
           }
           onEdit={(task) => updateTask(task)}
           onDelete={(id) => deleteTask(id)}
