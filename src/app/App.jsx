@@ -1,11 +1,24 @@
-import { TasksPage } from "@/modules/tasks/index.jsx";
+// import './App.css'
+// import Tasks from "./Tasks"
+
+// function App() {
+//   return (
+//     <div className="app">
+//       <h1>📝 React Task Evaluator</h1>
+//       <Tasks />
+//     </div>
+
+// export
+
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from "@/app/router";
 
 function App() {
   return (
-    <div className="app pt-4">
-      <TasksPage />
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 
-export default App
+export default App;

@@ -17,7 +17,9 @@ export const addTaskAPI = (task) =>
 
 export const updateTaskAPI = (updatedTask) =>
   new Promise((resolve) => {
-    fakeTasks = fakeTasks.map((t) => (t.id === updatedTask.id ? updatedTask : t));
+    fakeTasks = fakeTasks.map((t) =>
+      t.id === updatedTask.id ? updatedTask : t,
+    );
     setTimeout(() => resolve(updatedTask), 500);
   });
 
@@ -26,7 +28,6 @@ export const deleteTaskAPI = (id) =>
     fakeTasks = fakeTasks.filter((t) => t.id !== id);
     setTimeout(() => resolve(id), 500);
   });
-
 
 // modules/tasks/services/tasks.service.js
 // import { api } from "@/api/axios";

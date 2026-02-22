@@ -1,68 +1,67 @@
 import { useState } from "react";
-import { Card, Button, Tooltip, Checkbox  } from "flowbite-react";
+import { Card, Button, Tooltip, Checkbox } from "flowbite-react";
 
 import { HiPencil, HiTrash } from "react-icons/hi";
 
 export const TaskCard = ({ task, onEdit, onDelete, onCompleted }) => {
-
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   return (
     <div className="relative w-full mx-auto">
       <Card
-  className={`
+        className={`
     h-full max-h-[250px] rounded-xl shadow-md hover:shadow-xl overflow-auto flex flex-col
     transition-all duration-300 ease-in-out min-h-[250px]
     ${task.completed ? "bg-green-100/70" : "bg-yellow-100/70"}
   `}
-  style={{ padding: '1.5rem' }}
->
-  {/* Top-right buttons */}
-  <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-1">
-    {/* Edit */}
-    <Tooltip content="Edit blog" placement="top">
-      <Button
-        onClick={onEdit}
-        size="lg"
-        className="!bg-transparent !hover:bg-transparent flex items-center justify-center p-2 bg-transparent"
+        style={{ padding: "1.5rem" }}
       >
-        <HiPencil className="w-6 h-6" color="blue" />
-      </Button>
-    </Tooltip>
+        {/* Top-right buttons */}
+        <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-0">
+          {/* Edit */}
+          <Tooltip content="Edit blog" placement="top">
+            <Button
+              onClick={onEdit}
+              size="lg"
+              className="!bg-transparent !hover:bg-transparent flex items-center justify-center p-2 bg-transparent"
+            >
+              <HiPencil className="w-6 h-6" color="blue" />
+            </Button>
+          </Tooltip>
 
-    {/* Delete */}
-    <Tooltip content="Delete blog" placement="top">
-      <Button
-        onClick={() => onDelete(true)}
-        size="lg"
-        className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
-      >
-        <HiTrash className="w-6 h-6" color="red" />
-      </Button>
-    </Tooltip>
+          {/* Delete */}
+          <Tooltip content="Delete blog" placement="top">
+            <Button
+              onClick={() => onDelete(true)}
+              size="lg"
+              className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
+            >
+              <HiTrash className="w-6 h-6" color="red" />
+            </Button>
+          </Tooltip>
 
-    {/* Completed */}
-    <Tooltip content="Mark as completed" placement="top">
-      <Button
-        onClick={() => onCompleted(true)}
-        size="lg"
-        className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
-      >
-        <Checkbox
-          onChange={(e) => onCompleted(e.target.checked)}
-          className="w-5 h-5 cursor-pointer"
-        />
-      </Button>
-    </Tooltip>
-  </div>
+          {/* Completed */}
+          <Tooltip content="Mark as completed" placement="top">
+            <Button
+              onClick={() => onCompleted(true)}
+              size="lg"
+              className="!bg-transparent !hover:bg-transparent !focus:ring-0 flex items-center justify-center p-2 bg-transparent"
+            >
+              <Checkbox
+                onChange={(e) => onCompleted(e.target.checked)}
+                className="w-5 h-5 cursor-pointer"
+              />
+            </Button>
+          </Tooltip>
+        </div>
 
-  {/* Content */}
-  <div className="flex flex-col items-start mt-4 pt-2">
-    <p className="text-lg font-semibold text-gray-800 dark:text-white">{task.title}</p>
-  </div>
-</Card>
-
+        {/* Content */}
+        <div className="flex flex-col items-start mt-4 pt-3">
+          <p className="text-md font-semibold text-gray-800 dark:text-white">
+            {task.title}
+          </p>
+        </div>
+      </Card>
     </div>
   );
 };
-

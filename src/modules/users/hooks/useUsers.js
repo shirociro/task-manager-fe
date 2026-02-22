@@ -1,28 +1,58 @@
-let fakeUsers = [
-  { id: 1, name: "Rico", password: "samplePassword123" },
-  { id: 2, name: "Ciro", password: "samplePassword123" },
-];
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  fetchUsers,
+  addUserAPI,
+  updateUserAPI,
+  deleteUserAPI,
+} from "@/modules/users/services/users.service";
 
-export const fetchUsers = () =>
-  new Promise((resolve) => {
-    setTimeout(() => resolve([...fakeUsers]), 500); // simulate network delay
+export const useUsers = () => {
+  const queryClient = useQueryClient();
+
+  // Fetch users
+  const {
+    data: users = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
   });
 
-export const addUserAPI = (user) =>
-  new Promise((resolve) => {
-    const newUser = { ...user, id: Date.now() };
-    fakeUsers.push(newUser);
-    setTimeout(() => resolve(newUser), 500);
+  // Add users
+  const addUser = useMutation({
+    mutationFn: addUserAPI,
+    onSuccess: (newUser) => {
+      queryClient.setQueryData(["users"], (old = []) => [...old, newUser]);
+    },
   });
 
-export const updateUserAPI = (updatedUser) =>
-  new Promise((resolve) => {
-    fakeUsers = fakeUsers.map((t) => (t.id === updatedUser.id ? updatedUser : t));
-    setTimeout(() => resolve(updatedUser), 500);
+  // Update users
+  const updateUser = useMutation({
+    mutationFn: updateUserAPI,
+    onSuccess: (updatedUser) => {
+      queryClient.setQueryData(["users"], (old = []) =>
+        old.map((t) => (t.id === updatedUser.id ? updatedUser : t)),
+      );
+    },
   });
 
-export const deleteUserAPI = (id) =>
-  new Promise((resolve) => {
-    fakeUsers = fakeUsers.filter((t) => t.id !== id);
-    setTimeout(() => resolve(id), 500);
+  // Delete users
+  const deleteUser = useMutation({
+    mutationFn: deleteUserAPI,
+    onSuccess: (id) => {
+      queryClient.setQueryData(["users"], (old = []) =>
+        old.filter((t) => t.id !== id),
+      );
+    },
   });
+
+  return {
+    users,
+    isLoading,
+    isError,
+    addUser,
+    updateUser,
+    deleteUser,
+  };
+};

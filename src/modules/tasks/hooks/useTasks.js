@@ -1,11 +1,20 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchTasks, addTaskAPI, updateTaskAPI, deleteTaskAPI } from "@/modules/tasks/services/tasks.service";
+import {
+  fetchTasks,
+  addTaskAPI,
+  updateTaskAPI,
+  deleteTaskAPI,
+} from "@/modules/tasks/services/tasks.service";
 
 export const useTasks = () => {
   const queryClient = useQueryClient();
 
   // Fetch tasks
-  const { data: tasks = [], isLoading, isError } = useQuery({
+  const {
+    data: tasks = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["tasks"],
     queryFn: fetchTasks,
   });
@@ -23,7 +32,7 @@ export const useTasks = () => {
     mutationFn: updateTaskAPI,
     onSuccess: (updatedTask) => {
       queryClient.setQueryData(["tasks"], (old = []) =>
-        old.map((t) => (t.id === updatedTask.id ? updatedTask : t))
+        old.map((t) => (t.id === updatedTask.id ? updatedTask : t)),
       );
     },
   });
@@ -32,7 +41,9 @@ export const useTasks = () => {
   const deleteTask = useMutation({
     mutationFn: deleteTaskAPI,
     onSuccess: (id) => {
-      queryClient.setQueryData(["tasks"], (old = []) => old.filter((t) => t.id !== id));
+      queryClient.setQueryData(["tasks"], (old = []) =>
+        old.filter((t) => t.id !== id),
+      );
     },
   });
 
