@@ -14,13 +14,17 @@ export const TasksPage = () => {
         <Grid
           tasks={tasks}
           onCompleted={(task) =>
-            updateTask.mutate({ ...task, completed: !task.completed })
+            updateTask({ ...task, completed: !task.completed })
           }
-          onEdit={(task) => updateTask.mutate(task)}
-          onDelete={(task) => deleteTask.mutate(task.id)}
-          onAdd={(task) => addTask.mutate(task)}
+          onEdit={(task) => updateTask(task)}
+          onDelete={(task) => deleteTask(task.id)}
+          onAdd={(newTask) => {
+            addTask(newTask); 
+          }}
         />
       </div>
     </section>
   );
 };
+
+

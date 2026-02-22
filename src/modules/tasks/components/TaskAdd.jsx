@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { Card, Button, Checkbox, Tooltip } from "flowbite-react";
+import { Card, Button, Checkbox, Tooltip, Select } from "flowbite-react";
 import { HiCheck, HiX } from "react-icons/hi";
+import { useUsers } from "@/modules/users/hooks/useUsers";
 
 export const TaskAdd = ({ onAdd }) => {
+  const { users = [] } = useUsers();
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
-  const [completed, setCompleted] = useState(false);
+  const [isCompleted, setCompleted] = useState(false);
+  const [userId, setUserId] = useState("");
 
   const handleAdd = () => {
     if (!title.trim()) return; // prevent empty task
     if (onAdd) {
-      onAdd({ title, completed });
+      onAdd({ title, isCompleted, userId });
     }
     // Reset form
     setTitle("");
     setCompleted(false);
+    setUserId("");
     setShowForm(false);
   };
 
@@ -39,14 +43,33 @@ export const TaskAdd = ({ onAdd }) => {
               onChange={(e) => setTitle(e.target.value)}
               autoFocus
             />
+            <div>
+            <div className="mb-1 block">
+              </div>
+              <Select 
+                id="users" 
+                sizing="sm"
+                required 
+                value={userId} 
+                onChange={(e) => setUserId(e.target.value)}
+                >
+                
+              <option value="">Select a user</option>
+                {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                    {user.username}
+                    </option>
+                ))}
+              </Select>
+            </div>
             <div className="flex items-center gap-2">
               <Checkbox
-                id="completed"
-                checked={completed}
+                id="isCompleted"
+                checked={isCompleted}
                 onChange={(e) => setCompleted(e.target.checked)}
               />
               <label
-                htmlFor="completed"
+                htmlFor="isCompleted"
                 className="text-gray-700 dark:text-white"
               >
                 Completed

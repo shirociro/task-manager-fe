@@ -4,14 +4,14 @@ import { TaskEdit } from "@/modules/tasks/components/TaskEdit";
 import { TaskAdd } from "@/modules/tasks/components/TaskAdd";
 import { TaskDelete } from "@/modules/tasks/components/TaskDelete";
 
-export const Grid = ({ tasks, onEdit, onDelete, onCompleted }) => {
+export const Grid = ({ tasks, onAdd, onEdit, onDelete, onCompleted }) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [deletingTaskId, setDeletingTaskId] = useState(null);
 
   return (
     <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
       {/* First card: TaskAdd */}
-      <TaskAdd />
+      <TaskAdd onAdd={onAdd} />
 
       {/* Task Cards */}
       {tasks.map((task) => (
