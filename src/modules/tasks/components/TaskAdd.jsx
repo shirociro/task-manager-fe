@@ -31,7 +31,7 @@ export const TaskAdd = ({ onAdd }) => {
       onAdd({ 
         title: title.trim(), 
         completed: isCompleted, // matching typical backend naming
-        userId: Number(userId) 
+        userId: (userId) 
       });
     }
 
