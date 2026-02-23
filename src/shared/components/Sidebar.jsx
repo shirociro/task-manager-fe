@@ -1,6 +1,12 @@
 import { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { HiOutlineUsers, HiOutlineViewList, HiOutlineLogout, HiMenuAlt2, HiX } from "react-icons/hi";
+import {
+  HiOutlineUsers,
+  HiOutlineViewList,
+  HiOutlineLogout,
+  HiMenuAlt2,
+  HiX,
+} from "react-icons/hi";
 
 export const AppSidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -29,7 +35,7 @@ export const AppSidebar = () => {
     <>
       {/* MOBILE TRIGGER */}
       {!isMobileOpen && (
-        <button 
+        <button
           onClick={() => setIsMobileOpen(true)}
           className="lg:hidden fixed top-4 left-4 z-[60] p-2 bg-[#1e1e2f] text-white rounded-lg shadow-md"
         >
@@ -39,28 +45,38 @@ export const AppSidebar = () => {
 
       {/* OVERLAY */}
       {isMobileOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/40 z-[45] lg:hidden backdrop-blur-sm"
           onClick={() => setIsMobileOpen(false)}
         />
       )}
 
       {/* SIDEBAR */}
-      <aside 
+      <aside
         className={`
           fixed left-0 top-0 z-[50] h-screen bg-[#1e1e2f] flex flex-col pt-5
           transition-all duration-300 ease-in-out overflow-hidden
           ${isMobileOpen ? "translate-x-0 w-[240px]" : "-translate-x-full lg:translate-x-0"}
         `}
-        style={{ 
-          width: window.innerWidth >= 1024 ? (isHovered ? "200px" : "70px") : (isMobileOpen ? "240px" : "0px") 
+        style={{
+          width:
+            window.innerWidth >= 1024
+              ? isHovered
+                ? "200px"
+                : "70px"
+              : isMobileOpen
+                ? "240px"
+                : "0px",
         }}
         onMouseEnter={startHoverTimer}
         onMouseLeave={startLeaveTimer}
       >
         {/* Mobile Close Button */}
         <div className="lg:hidden flex justify-end px-4 mb-4">
-          <button onClick={() => setIsMobileOpen(false)} className="text-gray-400">
+          <button
+            onClick={() => setIsMobileOpen(false)}
+            className="text-gray-400"
+          >
             <HiX size={24} />
           </button>
         </div>
@@ -73,18 +89,20 @@ export const AppSidebar = () => {
               onClick={() => setIsMobileOpen(false)}
               className={({ isActive }) => `
                 flex items-center h-12 transition-all duration-200 group no-underline
-                ${isActive ? 'text-blue-500' : 'text-white hover:text-gray-400'}
+                ${isActive ? "text-blue-500" : "text-white hover:text-gray-400"}
               `}
-              style={{ textDecoration: 'none' }} // Extra insurance against browser defaults
+              style={{ textDecoration: "none" }} // Extra insurance against browser defaults
             >
               <div className="min-w-[46px] flex items-center justify-center text-xl transition-colors">
                 <item.icon />
               </div>
 
-              <span className={`
+              <span
+                className={`
                 whitespace-nowrap transition-opacity duration-300 text-sm font-medium no-underline
-                ${(isHovered || isMobileOpen) ? 'opacity-100 ml-2' : 'opacity-0'}
-              `}>
+                ${isHovered || isMobileOpen ? "opacity-100 ml-2" : "opacity-0"}
+              `}
+              >
                 {item.label}
               </span>
             </NavLink>

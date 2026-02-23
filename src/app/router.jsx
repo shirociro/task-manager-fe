@@ -10,11 +10,12 @@ import { UsersPage } from "@/modules/users";
 export const AppRouter = () => (
   <Routes>
     <Route element={<AdminLayout />}>
-      <Route path="/tasks" element={<TasksPage />} />
-      <Route path="/users" element={<UsersPage />} />
+      <Route index element={<Navigate to="tasks" replace />} />
+
+      <Route path="tasks" element={<TasksPage />} />
+      <Route path="users" element={<UsersPage />} />
     </Route>
 
-    {/* FALLBACK */}
-    <Route path="*" element={<Navigate to="/login" replace />} />
+    <Route path="*" element={<Navigate to="/tasks" replace />} />
   </Routes>
 );

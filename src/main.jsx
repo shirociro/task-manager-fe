@@ -6,7 +6,7 @@ import "@/index.css";
 
 // Redux
 import { Provider } from "react-redux";
-import { store } from "@/shared/stores/index"; // make sure this points to your redux store
+import { store } from "@/shared/stores/index";
 
 // React Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
