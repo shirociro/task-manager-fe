@@ -44,6 +44,7 @@ export const TasksPage = () => {
       )}
 
       <div className="container-fluid mx-auto px-4">
+        <div className="text-center max-w-4xl mb-16 flex items-start justify-start gap-3"></div>
         <Grid
           tasks={tasks}
           onCompleted={(task) =>

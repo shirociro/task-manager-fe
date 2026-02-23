@@ -29,7 +29,7 @@ export const TaskAdd = ({ onAdd }) => {
     if (onAdd) {
       onAdd({
         title: title.trim(),
-        completed: isCompleted, 
+        completed: isCompleted,
         userId: userId,
       });
     }

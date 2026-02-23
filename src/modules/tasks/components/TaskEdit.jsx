@@ -25,7 +25,7 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
       ...task,
       title: title.trim(),
       completed: isCompleted,
-      userId: Number(userId),
+      userId: userId,
     });
   };
 

@@ -5,12 +5,9 @@ export const UserDelete = ({ user, onConfirm, onCancel }) => {
     <div className="relative w-full mx-auto">
       <Card
         className="h-full rounded-xl shadow-md overflow-hidden flex flex-col
-          justify-center items-center transition-all duration-300 ease-in-out min-h-[150px] max-h-[150px] text-center"
+          justify-center items-center transition-all duration-300 ease-in-out min-h-[150px] max-h-[150px] text-center bg-red-100/70"
         style={{ padding: "1.5rem" }}
       >
-        <p className="text-lg font-semibold text-gray-800 dark:text-white mb-0 pt-4 mt-4">
-          Are you sure you want to delete this user? "{user.username}"
-        </p>
         <div className="absolute top-3 right-3 z-10 flex gap-2 bg-white/70 rounded-lg p-0">
           {/* Edit */}
           <Tooltip content="Edit blog" placement="top">
@@ -33,6 +30,14 @@ export const UserDelete = ({ user, onConfirm, onCancel }) => {
               <HiX className="w-6 h-6" color="red" />
             </Button>
           </Tooltip>
+        </div>
+        <div className="justify-center items-center">
+          <p className="text-sm font-semibold text-gray-800 dark:text-white mb-1 mt-4 pt-4 ">
+            Are you sure you want to delete this user?
+          </p>
+          <p className="text-md text-gray-600 dark:text-gray-300 ">
+            "{user.username}"
+          </p>
         </div>
       </Card>
     </div>

@@ -100,6 +100,7 @@ export const useTasks = () => {
       if (navigator.onLine)
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
+    onSuccess: () => showAlert("Task Deleted!", "destructive"),
   });
 
   return {

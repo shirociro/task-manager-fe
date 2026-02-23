@@ -13,21 +13,16 @@ const queryClient = new QueryClient({
       networkMode: "offlineFirst",
     },
     mutations: {
-      networkMode: "offlineFirst", // This is key: it queues mutations
+      networkMode: "offlineFirst",
     },
   },
 });
 
-/**
- * 2. Force Sync on Reconnect
- * This ensures that as soon as the browser fires the 'online' event,
- * TanStack Query resumes all paused mutations.
- */
 onlineManager.setEventListener((setOnline) => {
   const handleOnline = () => {
     setOnline(true);
     queryClient.resumePausedMutations().then(() => {
-      queryClient.invalidateQueries(); // Refresh data to get real server IDs
+      queryClient.invalidateQueries();
     });
   };
 
