@@ -21,12 +21,11 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
       return;
     }
 
-    // If valid, proceed 
-    onSave({ 
-      ...task, 
-      title: title.trim(), 
+    onSave({
+      ...task,
+      title: title.trim(),
       completed: isCompleted,
-      userId: Number(userId) 
+      userId: Number(userId),
     });
   };
 
@@ -42,14 +41,15 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
           <textarea
             placeholder="Task title"
             className={`p-2 rounded border text-sm focus:outline-none focus:ring-1 resize-none h-24 dark:bg-gray-700 dark:text-white ${
-              errors.title 
-                ? "border-red-500 focus:ring-red-500 ring-1 ring-red-500" 
+              errors.title
+                ? "border-red-500 focus:ring-red-500 ring-1 ring-red-500"
                 : "border-gray-300 focus:ring-blue-400"
             }`}
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
-              if (errors.title) setErrors(prev => ({ ...prev, title: false }));
+              if (errors.title)
+                setErrors((prev) => ({ ...prev, title: false }));
             }}
             autoFocus
           />
@@ -63,17 +63,18 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
               value={userId}
               onChange={(e) => {
                 setUserId(e.target.value);
-                if (errors.userId) setErrors(prev => ({ ...prev, userId: false }));
+                if (errors.userId)
+                  setErrors((prev) => ({ ...prev, userId: false }));
               }}
             >
-              <option value="">Select a user</option>
+              {/* <option value="">Select a user</option> */}
               {users.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.username}
                 </option>
               ))}
             </Select>
-          </div> 
+          </div>
 
           {/* Completion Checkbox */}
           <div className="flex items-center gap-2">

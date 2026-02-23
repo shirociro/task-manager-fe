@@ -10,13 +10,9 @@ const initialState = {
 const tasksSlice = createSlice({
   name: "tasks",
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
 });
 
-export const {
- 
-} = tasksSlice.actions;
+export const {} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

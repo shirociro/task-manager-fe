@@ -91,7 +91,7 @@ export const AppSidebar = () => {
                 flex items-center h-12 transition-all duration-200 group no-underline
                 ${isActive ? "text-blue-500" : "text-white hover:text-gray-400"}
               `}
-              style={{ textDecoration: "none" }} // Extra insurance against browser defaults
+              style={{ textDecoration: "none" }}
             >
               <div className="min-w-[46px] flex items-center justify-center text-xl transition-colors">
                 <item.icon />

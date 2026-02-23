@@ -9,20 +9,27 @@ import {
 
 export const useTasks = () => {
   const queryClient = useQueryClient();
-  const [alert, setAlert] = useState({ show: false, message: "", type: "success" });
+  const [alert, setAlert] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
   const timeoutRef = useRef(null);
 
   const showAlert = useCallback((message, type = "success") => {
     setAlert({ show: true, message, type });
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => setAlert({ show: false, message: "", type: "success" }), 3000);
+    timeoutRef.current = setTimeout(
+      () => setAlert({ show: false, message: "", type: "success" }),
+      3000,
+    );
   }, []);
 
   /* 1. FETCH - Trust the cache completely while offline */
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["tasks"],
     queryFn: fetchTasks,
-    staleTime: Infinity, 
+    staleTime: Infinity,
     refetchOnReconnect: false, // Prevents the snap-back on reconnect
     refetchOnWindowFocus: false,
   });
@@ -41,26 +48,31 @@ export const useTasks = () => {
   /* 3. ADD TASK */
   const addTaskMutation = useMutation({
     mutationFn: addTaskAPI,
-    onMutate: (newTask) => updateLocalCache((old = []) => [
-      ...old, 
-      { ...newTask, id: crypto.randomUUID(), isOptimistic: true }
-    ]),
+    onMutate: (newTask) =>
+      updateLocalCache((old = []) => [
+        ...old,
+        { ...newTask, id: crypto.randomUUID(), isOptimistic: true },
+      ]),
     onError: (err, _, context) => {
-      if (navigator.onLine) queryClient.setQueryData(["tasks"], context.previous);
+      if (navigator.onLine)
+        queryClient.setQueryData(["tasks"], context.previous);
     },
     onSettled: () => {
-      if (navigator.onLine) queryClient.invalidateQueries({ queryKey: ["tasks"] });
-    }
+      if (navigator.onLine)
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
   });
 
   /* 4. UPDATE TASK (The Fix is here) */
   const updateTaskMutation = useMutation({
     mutationFn: updateTaskAPI,
     // Ensure we tell the mutation to wait if offline
-    networkMode: "offlineFirst", 
+    networkMode: "offlineFirst",
     onMutate: async (updatedTask) => {
       return await updateLocalCache((old = []) =>
-        old.map((t) => (t.id === updatedTask.id ? { ...t, ...updatedTask } : t))
+        old.map((t) =>
+          t.id === updatedTask.id ? { ...t, ...updatedTask } : t,
+        ),
       );
     },
     onSuccess: () => showAlert("Updated!"),
@@ -76,16 +88,18 @@ export const useTasks = () => {
       if (navigator.onLine && queryClient.isMutating() === 0) {
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
       }
-    }
+    },
   });
 
   /* 5. DELETE TASK */
   const deleteTaskMutation = useMutation({
     mutationFn: deleteTaskAPI,
-    onMutate: (id) => updateLocalCache((old = []) => old.filter((t) => t.id !== id)),
+    onMutate: (id) =>
+      updateLocalCache((old = []) => old.filter((t) => t.id !== id)),
     onSettled: () => {
-      if (navigator.onLine) queryClient.invalidateQueries({ queryKey: ["tasks"] });
-    }
+      if (navigator.onLine)
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
   });
 
   return {
