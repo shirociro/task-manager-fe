@@ -3,9 +3,7 @@ import { Card, Button, Tooltip, Checkbox } from "flowbite-react";
 
 import { HiPencil, HiTrash } from "react-icons/hi";
 
-export const UserCard = ({ user, onEdit, onDelete, onCompleted }) => {
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-
+export const UserCard = ({ user, onEdit, onDelete }) => {
   return (
     <div className="relative w-full mx-auto">
       <Card

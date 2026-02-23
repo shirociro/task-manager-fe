@@ -38,7 +38,7 @@ export const Grid = ({ users, onAdd, onEdit, onDelete, onCompleted }) => {
             <UserCard
               user={user}
               onEdit={() => setEditingUserId(user.id)}
-              onDelete={() => setDeletingUserId(user.id)} // trigger delete mode
+              onDelete={() => setDeletingUserId(user.id)}
               onCompleted={() => onCompleted(user.id)}
             />
           )}

@@ -21,7 +21,7 @@ export const UserAdd = ({ onAdd, existingUsers = [] }) => {
       setError("Password must be at least 6 characters");
       return false;
     }
-    setError(""); // clear error if valid
+    setError("");
     return true;
   };
 
@@ -51,7 +51,7 @@ export const UserAdd = ({ onAdd, existingUsers = [] }) => {
         className="h-full max-h-[150px] rounded-xl shadow-md hover:shadow-xl overflow-auto flex flex-col
           transition-all duration-300 ease-in-out min-h-[150px] cursor-pointer"
         style={{ padding: "1.5rem" }}
-        onClick={() => !showForm && setShowForm(true)} // open form on click
+        onClick={() => !showForm && setShowForm(true)}
       >
         {!showForm ? (
           <p className="text-md font-semibold text-gray-800 dark:text-white text-center">

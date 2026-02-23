@@ -52,7 +52,7 @@ export const useUsers = () => {
     mutationFn: addUserAPI,
     onSuccess: (newUser) => {
       queryClient.setQueryData(["users"], (old = []) => [...old, newUser]);
-      showAlert("User added!", "success");
+      showAlert("Successfully added User!", "success");
     },
   });
 
@@ -72,7 +72,7 @@ export const useUsers = () => {
         showAlert("Update failed", "destructive");
       }
     },
-    onSuccess: () => showAlert("User updated!"),
+    onSuccess: () => showAlert("Successfully updated User", "success"),
     onSettled: () => {
       if (navigator.onLine && queryClient.isMutating() === 0) {
         queryClient.invalidateQueries({ queryKey: ["users"] });
@@ -90,7 +90,7 @@ export const useUsers = () => {
         queryClient.setQueryData(["users"], context.previous);
       showAlert("Delete failed", "destructive");
     },
-    onSuccess: () => showAlert("User deleted!", "destructive"),
+    onSuccess: () => showAlert("Successfully deleted User", "success"),
     onSettled: () => {
       if (navigator.onLine)
         queryClient.invalidateQueries({ queryKey: ["users"] });

@@ -75,7 +75,7 @@ export const useTasks = () => {
         ),
       );
     },
-    onSuccess: () => showAlert("Updated!"),
+    onSuccess: () => showAlert("Successfully updated Task", "success"),
     onError: (err, _, context) => {
       // If we're offline, DON'T rollback. Only rollback on a real server 400/500 error.
       if (navigator.onLine && context?.previous) {
@@ -100,7 +100,7 @@ export const useTasks = () => {
       if (navigator.onLine)
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
-    onSuccess: () => showAlert("Task Deleted!", "destructive"),
+    onSuccess: () => showAlert("Successfully deleted Task", "success"),
   });
 
   return {

@@ -4,6 +4,7 @@ import {
   HiExclamationCircle,
   HiTrash,
   HiInformationCircle,
+  HiX,
 } from "react-icons/hi";
 
 const variants = {
@@ -32,23 +33,27 @@ const variants = {
 
 export const Alert = ({ message, variant = "success", onClose }) => {
   const style = variants[variant] || variants.success;
+
   return (
-    <div className="relative overflow-hidden rounded-lg shadow-xl">
+    <div className="relative overflow-hidden rounded-lg shadow-xl w-full max-w-sm">
       <Toast>
+        {/* Icon */}
         <div
           className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${style.color}`}
         >
           {style.icon}
         </div>
-        <div className="ml-3 text-sm font-normal">{message}</div>
-        {Toast.Toggle ? (
-          <Toast.Toggle onClick={onClose} />
-        ) : (
-          <button
-            onClick={onClose}
-            className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-          ></button>
-        )}
+
+        {/* Message */}
+        <div className="ml-3 text-sm font-normal flex-1">{message}</div>
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        >
+          <HiX className="h-5 w-5" />
+        </button>
       </Toast>
 
       {/* Progress Bar */}

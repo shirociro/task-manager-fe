@@ -67,7 +67,6 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
                   setErrors((prev) => ({ ...prev, userId: false }));
               }}
             >
-              {/* <option value="">Select a user</option> */}
               {users.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.username}
