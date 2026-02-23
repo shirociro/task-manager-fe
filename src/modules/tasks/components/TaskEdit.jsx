@@ -6,7 +6,7 @@ import { useUsers } from "@/modules/users/hooks/useUsers";
 export const TaskEdit = ({ task, onSave, onCancel }) => {
   const { users = [] } = useUsers();
   const [title, setTitle] = useState(task.title);
-  const [isCompleted, setCompleted] = useState(task.completed || false);
+  const [isCompleted, setCompleted] = useState(task.isCompleted || false);
   const [userId, setUserId] = useState(task.userId || "");
 
   // Validation state
@@ -24,7 +24,7 @@ export const TaskEdit = ({ task, onSave, onCancel }) => {
     onSave({
       ...task,
       title: title.trim(),
-      completed: isCompleted,
+      isCompleted: isCompleted,
       userId: userId,
     });
   };

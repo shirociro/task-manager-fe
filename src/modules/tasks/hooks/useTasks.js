@@ -46,22 +46,15 @@ export const useTasks = () => {
   };
 
   /* 3. ADD TASK */
+ 
   const addTaskMutation = useMutation({
     mutationFn: addTaskAPI,
-    onMutate: (newTask) =>
-      updateLocalCache((old = []) => [
-        ...old,
-        { ...newTask, id: crypto.randomUUID(), isOptimistic: true },
-      ]),
-    onError: (err, _, context) => {
-      if (navigator.onLine)
-        queryClient.setQueryData(["tasks"], context.previous);
-    },
-    onSettled: () => {
-      if (navigator.onLine)
-        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    onSuccess: (newTask) => {
+      queryClient.setQueryData(["tasks"], (old = []) => [...old, newTask]);
+      showAlert("Successfully added Task", "success");
     },
   });
+
 
   /* 4. UPDATE TASK (The Fix is here) */
   const updateTaskMutation = useMutation({
